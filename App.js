@@ -1,23 +1,57 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TabBarIOS,
+  NavigatorIOS,
+  TouchableHighlight
+} from 'react-native';
+
+import NavItems from "./app/NavItems";
 
 export default class App extends React.Component {
+
+  constructor(props) {
+      super(props);
+      this.state = {
+        selectedTab: NavItems[0].key
+      };
+    }
+
   render() {
+
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
+
+      <TabBarIOS >
+        {NavItems.map(item =>
+          <TabBarIOS.Item
+            title={item.navTitle}
+            selected={this.state.selectedTab === item.key}
+            key={item.key}
+            onPress={() =>
+              this.setState({
+                selectedTab: item.key
+              })
+
+            } >
+            <NavigatorIOS
+              style={styles.nav}
+              initialRoute={{
+                component: item.component,
+                title: item.viewTitle
+              }} />
+          </TabBarIOS.Item>
+
+        )}
+      </TabBarIOS>
+
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  nav: {
+     flex: 1
+   }
+ });
