@@ -8,6 +8,8 @@ import {
   TouchableHighlight
 } from 'react-native';
 
+import Icon from 'react-native-vector-icons/Ionicons';
+
 import NavItems from "./app/NavItems";
 
 export default class App extends React.Component {
@@ -23,10 +25,14 @@ export default class App extends React.Component {
 
     return (
 
-      <TabBarIOS >
+      <TabBarIOS
+        barTintColor='#fff'
+        tintColor='#E41B17'>
         {NavItems.map(item =>
-          <TabBarIOS.Item
+          <Icon.TabBarItemIOS
             title={item.navTitle}
+            iconName={item.icon.ios_outline}
+            selectedIconName={item.icon.ios}
             selected={this.state.selectedTab === item.key}
             key={item.key}
             onPress={() =>
@@ -41,7 +47,7 @@ export default class App extends React.Component {
                 component: item.component,
                 title: item.viewTitle
               }} />
-          </TabBarIOS.Item>
+          </Icon.TabBarItemIOS>
 
         )}
       </TabBarIOS>

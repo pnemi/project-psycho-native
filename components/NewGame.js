@@ -3,14 +3,18 @@ import {
   StyleSheet,
   View,
   Text,
+  TextInput,
   Platform
 } from 'react-native';
+
+
 
 export default class NewGame extends React.Component {
   render() {
     return (
       <View style={styles.myPage}>
-        <Text>NewGame</Text>
+
+      <Text>Omggg</Text>
       </View>
     )
   }
@@ -26,7 +30,9 @@ const styles = StyleSheet.create({
   },
   myPage: {
     flex: 1,
-    backgroundColor: 'orange',
     paddingTop: 64
+  },
+  textInput: {
+    flex: 1
   }
 });
